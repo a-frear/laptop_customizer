@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import './App.css';
 import CustomizeList from './CustomizeList/CustomizeList';
 import Cart from './Cart/Cart';
-import CartTotal from './CartTotal/CartTotal';
 
 const FEATURES = {
   Processor: [
@@ -88,11 +87,11 @@ class App extends Component {
         selected
     });
     };
-  render() {
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
+    render() {
+      const total = Object.keys(this.state.selected).reduce(
+        (acc, curr) => acc + this.state.selected[curr].cost,
+        0
+      );
     return (
       <div className="App">
         <header>
@@ -100,11 +99,7 @@ class App extends Component {
         </header>
         <main>
           <CustomizeList features={FEATURES} selected={this.state.selected} updateFeature={this.updateFeature} uscurrencyformat={USCurrencyFormat}/>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            <Cart selected={this.state.selected} uscurrencyformat={USCurrencyFormat} />
-            <CartTotal uscurrencyformat={USCurrencyFormat} total={total} />
-          </section>
+          <Cart selected={this.state.selected} uscurrencyformat={USCurrencyFormat} total={total} />
         </main>
       </div>
     );

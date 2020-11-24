@@ -1,5 +1,6 @@
 import React from 'react';
 import CartItem from '../CartItem/CartItem'
+import CartTotal from '../CartTotal/CartTotal'
 
 function Cart(props) {
     const summary = Object.keys(props.selected).map((feature, idx) => {
@@ -12,9 +13,11 @@ function Cart(props) {
         ); 
     });
     return (   
-        <>
+        <section className="main__summary">
+            <h2>Your cart</h2>
             {summary}
-        </>
+            <CartTotal uscurrencyformat={props.uscurrencyformat} total={props.total} />
+          </section>
     );
 }
 
